@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.ally-financial</groupId>
+    <artifactId>watchmen-integration-example</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+
+            <!--  Compiles Java sources..-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+
+            <!--  Run the JUnit unit tests in an isolated classloader.-->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+
+                    <!--  The test source directory containing test class sources.-->
+                    <testSourceDirectory>${basedir}/src/main/java/</testSourceDirectory>
+
+                    <!--  The directory containing generated test classes of the project being tested.-->
+                    <testClassesDirectory>${project.build.directory}/classes/</testClassesDirectory>
+
+                    <!--  Specify this parameter to run individual tests by file name, overriding the parameter includes and excludes-->
+
+                    <!--I will provide it from command line: mvn test  -Dtest=TestRunnerTemplate-->
+                    <!-- <test> /TestRunnerTemplate </test>-->
+
+                    <!--  Set this to "true" to cause a failure if there are no tests to run.-->
+                    <failIfNoTests>false</failIfNoTests>
+
+                    <!--  Set this to "true" to redirect the test standard output to a file (found in reportsDirectory/testName-output.txt).-->
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+
+
+
+
+                    <!--  run your tests in parallel.-->
+                     <parallel>suites</parallel>
+                     <threadCount>10</threadCount>
+
+                </configuration>
+
+            </plugin>
+
+            <!--  Plugin that generates test reports from Cucumber JSON files -->
+
+            <plugin>
+                <groupId>com.trivago.rta</groupId>
+                <artifactId>cluecumber-report-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>reporting</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+
+
+    </build>
+
+
+    <dependencies>
+
+        <!--  watchmen  -->
+
+        <dependency>
+            <groupId>io.github.ally-financial</groupId>
+            <artifactId>watchmen</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+</project>

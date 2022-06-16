@@ -124,15 +124,15 @@ For reports Cucumber can generate reports in the form of HTML, XML, JSON & TXT, 
 
 Example of Cucumber.xml report: 
 
-# <img src="src/docs/xml-report.png" width="600" height="400"> 
+# <img src="core/src/docs/xml-report.png" width="600" height="400"> 
 
 Example of Cucumber.html report: 
 
-# <img src="src/docs/html-report.png" width="600" height="400"> 
+# <img src="core/src/docs/html-report.png" width="600" height="400"> 
 
 Example of Cucumber reports plugin Cluecumber:
 
-# <img src="src/docs/cluecumber-report.png" width="600" height="400"> 
+# <img src="core/src/docs/cluecumber-report.png" width="600" height="400"> 
 
 
 ---
@@ -151,7 +151,7 @@ Watchmen is a Spring boot application:
 
 Example of Watchmen logs for request-response:
 
-# <img src="src/docs/request-response.png" width="800" height="600"> 
+# <img src="core/src/docs/request-response.png" width="800" height="600"> 
 
 
 ---

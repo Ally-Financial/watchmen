@@ -1,0 +1,4 @@
+key,value
+Content-Type, application/json
+acmEnv,{{cit1}}
+type,DEPOSITS
