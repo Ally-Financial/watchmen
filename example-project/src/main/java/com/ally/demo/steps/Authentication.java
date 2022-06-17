@@ -1,12 +1,8 @@
-package com.ally.d3.steps;
+package com.ally.demo.steps;
 
 import com.ally.d3.watchmen.steps.CommonApiStepsDefinition;
-import com.ally.d3.watchmen.steps.TestScope;
 import com.ally.d3.watchmen.utilities.RequestHelper;
-import com.ally.d3.watchmen.utilities.dataDriven.PlaceholderResolve;
-import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +23,7 @@ public class Authentication {
 
 
     @Value("${oauth_URL}")
-    private String acs_oauth_URL;
+    private String oauth_URL;
 
     @Value("${consumer_key}")
     private String consumer_key;
@@ -58,10 +54,11 @@ public class Authentication {
         Map<String, String> body = new HashMap<>();
         body.put("client_id", consumer_key);
         body.put("client_secret", consumer_secret);
-
         requestHelper.addFormDataToRequest(body);
 
         watchmen.sendRequest("POST");
+
+//if response is 200 - retrieve and store in scope access_token
         watchmen.responseStatusCode(200);
         watchmen.storeBodyNodeInScenarioScope("access_token", "access_token");
 

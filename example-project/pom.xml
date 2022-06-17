@@ -34,8 +34,8 @@
 
                     <!--  Specify this parameter to run individual tests by file name, overriding the parameter includes and excludes-->
 
-                    <!--I will provide it from command line: mvn test  -Dtest=TestRunnerTemplate-->
-                    <!-- <test> /TestRunnerTemplate </test>-->
+                    <!--I will provide it from command line: mvn test  -Dtest=CoinBaseTestsRunner-->
+                    <!-- <test> /CoinBaseTestsRunner </test>-->
 
                     <!--  Set this to "true" to cause a failure if there are no tests to run.-->
                     <failIfNoTests>false</failIfNoTests>

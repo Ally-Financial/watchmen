@@ -6,5 +6,5 @@
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:annotation-config/>
-    <bean name="SpringConfig" class="com.ally.d3.config.SpringConfig"/>
+    <bean name="SpringConfig" class="com.ally.demo.config.SpringConfig"/>
 </beans>
