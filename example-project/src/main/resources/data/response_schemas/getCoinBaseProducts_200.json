@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+
+  "items": {
+    "$ref": "#/definitions/Welcome10Element"
+  },
+  "definitions": {
+    "Welcome10Element": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "base_currency": {
+          "type": "string"
+        },
+        "quote_currency": {
+          "$ref": "#/definitions/QuoteCurrency"
+        },
+        "base_min_size": {
+          "type": "string"
+        },
+        "base_max_size": {
+          "type": "string"
+        },
+        "quote_increment": {
+          "type": "string"
+        },
+        "base_increment": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "min_market_funds": {
+          "type": "string"
+        },
+        "max_market_funds": {
+          "type": "string",
+          "format": "integer"
+        },
+        "margin_enabled": {
+          "type": "boolean"
+        },
+        "fx_stablecoin": {
+          "type": "boolean"
+        },
+        "max_slippage_percentage": {
+          "type": "string"
+        },
+        "post_only": {
+          "type": "boolean"
+        },
+        "limit_only": {
+          "type": "boolean"
+        },
+        "cancel_only": {
+          "type": "boolean"
+        },
+        "trading_disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        },
+        "status_message": {
+          "type": "string"
+        },
+        "auction_mode": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "auction_mode",
+        "base_currency",
+        "base_increment",
+        "base_max_size",
+        "base_min_size",
+        "cancel_only",
+        "display_name",
+        "fx_stablecoin",
+        "id",
+        "limit_only",
+        "margin_enabled",
+        "max_market_funds",
+        "max_slippage_percentage",
+        "min_market_funds",
+        "post_only",
+        "quote_currency",
+        "quote_increment",
+        "status",
+        "status_message",
+        "trading_disabled"
+      ],
+      "title": "Welcome10Element"
+    },
+    "QuoteCurrency": {
+      "type": "string",
+      "enum": [
+        "EUR",
+        "USD",
+        "BTC",
+        "USDT",
+        "ETH",
+        "GBP",
+        "USDC",
+        "DAI"
+      ],
+      "title": "QuoteCurrency"
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "online",
+        "delisted"
+      ],
+      "title": "Status"
+    }
+  }
+}
