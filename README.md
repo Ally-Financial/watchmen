@@ -45,27 +45,44 @@ During runtime, Watchmen transforms Gherkin steps into Java code, enabling you t
 - **Fast & Portable**
     - You can wrap Watchmen as a jar file and use Watchmen steps and Watchmen helper methods at any test project you are working on.  
 
+## Main Ingredients
 
+Watchmen is based on the following:
+
+  - Java
+  - Maven
+  - Cucumber-JVM
+  - Spring
+  - RestAssured
+  - Jackson
+  - AWS SDK
+  - Openapitools
+  - JDBS
+  - WebDriver
+  - Cluecumber
 
 ## Install
 
-   - Watchmen can be wrapped as a jar file. Any java development project can use it as a test resource
-   - Or just clone Watchmen project and add your tests under resources/features
+   - Watchmen packaged as a JAR file and stored in Maven Central Repository. Any java development project can use it as a test resource
+   - Clone Watchmen example project and add your tests under resources/features
    - You are free to organize your files using regular java package conventions
-   - Create your directory under src/main/resource/features
-   - Create your \<featureName\>.feature file
+   - Configure Cucumber Spring - check cucumber.xml under resources 
+   - Add your step definition class if needed and implement your steps
    - Create your scenarios using Watchmen steps. Add tags 
    - Update config.properties with run configurations and runtime data if needed
-   - Create your \<TestRun\>.java using template under src/main/java/testRunner. Define features, glue, tags and type of reports you want to generate ("plugins")
-   - Right click on \<TestRun\>.java and execute it
+   - Create your \<TestRun\>.java using template. Define features, glue, tags and type of reports you want to generate ("plugins")
+   - Execute \<TestRun\>.java
    - See cucumber reports and logs 
-   
+   - Run "mvn cluecumber-report:reporting" to generate Cluecumber report
+
   
 ## Run
 - **Easy to run from command line**
 
+Clone Watchmen example project 
+
        CD project directory 
-       mvn test  -Dtest=\<TestRun\>
+       mvn test  -Dtest=CoinBaseTestsRunner
 ---
 
 
@@ -131,7 +148,23 @@ With Watchmen framework we were able to overcome all these challenges and make t
 
 ## Watchmen Steps
 
-**All Watchmen steps and algorithms please see on WATCHMEN_STEPS.md**
+**All predefined Watchmen steps and algorithms please see on WATCHMEN_STEPS.md**
+
+If you decide to add your own step definitions, you need to create step definition class. 
+It should be called something like <StepsDefinition>.java and be added under: src/java/com/demo/steps/
+
+Here’s what it needs to look like:
+
+    public class StepsDefinition {  
+      
+        private static final Logger logger = LoggerFactory.getLogger(Authentication.class);
+    
+        @And("^I requested an access_token$")
+        public void getAccessToken() {
+          logger.info("Step: I requested an access_token");
+         
+        }
+    }
 
 ---
 ## Watchmen Data Management

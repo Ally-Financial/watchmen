@@ -37,9 +37,9 @@ public class Authentication {
 
     private static final Logger logger = LoggerFactory.getLogger(Authentication.class);
 
-    @And("^I got an Access Token$")
+    @And("^I requested an access_token$")
     public void getAccessToken() {
-        logger.info("Step: I Got an Access Token");
+        logger.info("Step: I requested an access_token");
 
         watchmen.iWantToTestURL(oauth_URL);
         watchmen.provideQueryParametersAs("grant_type","client_credentials");

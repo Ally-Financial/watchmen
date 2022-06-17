@@ -1,8 +1,39 @@
 # What’s required to put together Watchmen Framework
 ------
-**Watchmen Framework - test automation framework based on BDD Cucumber-JVM**   
+**Watchmen Framework - test automation framework based on BDD Cucumber-JVM** 
 
 ------
+
+
+## Example Project 
+
+ - Please clone example project 
+
+------
+
+
+## Project Structure
+
+ - Watchmen packaged as a JAR file and stored in Maven Central Repository
+ - To download Watchmen Jar From Maven Central Repository please add to POM.xml: 
+ 
+         <dependency>
+             <groupId>io.github.ally-financial</groupId>
+             <artifactId>watchmen</artifactId>
+             <version>1.0.0-RELEASE</version>
+         </dependency>
+         
+ - To register and inject project's properties Watchmen uses Spring framework, check SpringConfig.java
+ - To configure Spring to use property file you need to update class SpringConfig.java:
+        
+        @PropertySource("config.properties")
+ 
+ - Cucumber-JVM utilises dependency injection using Spring. To configure Cucumber and Spring integration check cucumber.xml under resources 
+  
+  
+         <context:annotation-config/>
+         <bean name="SpringConfig" class="com.ally.demo.config.SpringConfig"/>
+
 
 ## Overview
 
@@ -11,6 +42,7 @@
  - The glue between Gherkin and the system under test are implemented as regular Java methods and implemented in regular Java classes.
  - To simplify implementation of steps definition used many open source Java libraries, such as  "rest-assured", "jackson" "springframework", "openapitools", "amazonaws" and many others.
  - Dependency injection implemented using Spring.
+ - Cucumber JVM integrated with Spring.
  - To run Cucumber feature files Watchmen uses JUnit runner.
  - For reports Cucumber generates reports in the form of HTML, XML, JSON & TXT
  - Watchmen also provides Cluecumber reports and detailed logs
@@ -43,11 +75,9 @@ Here’s the example of the feature file:
 
 ---
 
-## Steps Sefinition
+## Steps Definition
 
  - The glue between Gherkin and the system under test are implemented as regular Java methods and implemented in regular Java classes "CommonApiStepsDefinition.java" and "AwsStepsDefinition.java".
-
- - Later on project it may be a good idea to divide steps between few other Java classes.
 
  - To hide implementation details "CommonApiStepsDefinition.java" and "AwsStepsDefinition.java" calling several reusable helper methods:
 
@@ -59,9 +89,11 @@ Here’s the example of the feature file:
     - ...
 
  - All available Watchmen steps and their algorithms please see on WATCHMEN_STEPS.md 
+ - If you decide to add your own step definitions, you need to create step definition class. 
+ - It should be called something like <StepsDefinition>.java and be added under src/java/com/demo/steps/
 ---
 
-## Managing Dependency
+## Managing Dependency between steps
 
 
  - A scenario in Gherkin is created by steps. Each step depends on previous steps result. This means that we must be able to share state between steps. 
@@ -154,25 +186,14 @@ Example of Watchmen logs for request-response:
 # <img src="core/src/docs/request-response.png" width="800" height="600"> 
 
 
----
-
-## Project Structure
-
- - To register and inject project's properties Watchmen uses Spring framework
-
-
- - To configure Spring to use property file you need to update class called \<SpringConfig\>.java  in src/main/java/com/ally/d3/watchmen/config: 
-
-@PropertySource("config.properties")
-
 
 ---
 
 ## How to Try This Project
 
 
-- Clone project to your local folder
-- Go to SDK and create new project from existing source (provide path to your folder)
+- Clone example project to your local folder
+- Go to SDK and create new project from existing source (provide path to the POM.xml of example project)
 - Watchmen is Maven project - to make sure your project is fine and all dependencies are on place - build it.
        
        run command:   mvn compile
@@ -206,8 +227,11 @@ Example of Watchmen logs for request-response:
           
  - To execute demo scenarios run command:        
        
-          mvn test  -Dtest=TestRunnerTemplate 
+          mvn test  -Dtest=CoinBaseTestsRunner 
+
+- To generate report run command:        
        
+          cluecumber-report:reporting        
        
 **This is it. Now your are ready to start testing your API**
 
