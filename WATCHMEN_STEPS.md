@@ -271,7 +271,7 @@
        "yearsAgo(25)" Watchmen will generate on a runtime
 ---
 
-- **And I set JSON body node to value:
+- **I set JSON body node to value:
     |JSON_node_path|value |**
     - Read data table and for the each row: read request specification body, locate requested body node using JSON_node_path. New node value (after resolving all placeholders) will replace the old value
       Assign updated Json as new Request payload.
@@ -282,7 +282,7 @@
 
       - Examples:
 
-           And I set JSON body node to String:
+           And I set JSON body node to value:
 
              |customer.firstName      |""%randomAlpha(20)%"" |
              |customer.isActive       |true                   |
@@ -309,9 +309,9 @@
 
     - Examples:
 
-               I add JSON node "zip" to Parent node "customer.address" as String ""28203""
-               I add JSON node "city" to Parent node "customer.address" as String ""{{city}}""
-               I add JSON node "" to Parent node "applicants.get(1).addresses" as String "{"addressLine1": "123 new street","city": "Sunny city"}"
+               I add JSON node "zip" to Parent node "customer.address" as value ""28203""
+               I add JSON node "city" to Parent node "customer.address" as value ""{{city}}""
+               I add JSON node "" to Parent node "applicants.get(1).addresses" as value "{"addressLine1": "123 new street","city": "Sunny city"}"
 
 
            "city" has to be provided on config.properties or as a runtime variable,
@@ -419,7 +419,7 @@
    - Examples:
 
 
-                    I set XML body node to String:
+                    I set XML body node to value:
 
                        |//CustomerInfo/Party/TaxIdentificationNumber               |%uniqueSSN%|
                        |//CustomerInfo/Party/TaxIdentificationNumber               |<saved_SSN>|
@@ -704,7 +704,7 @@
      "env" has to be provided on config.properties or as a runtime variable
 ---
 
-- **And Response body JSON matches JSON file "file_path"**
+- **Response body JSON matches JSON file "file_path"**
     - Resolve all placeholders for "file_path" and locate json file. Read response and assert response matches json file.
       Please see for more information: https://www.baeldung.com/jackson-compare-two-json-objects.
       In case of error Watchmen fails step and provide report where it is the difference
@@ -765,7 +765,7 @@
 
     - Examples:
 
-              I store Response header "Connection" as "Connection" in scenario scope
+              I store Response header "Connection" as "Connection" in the scenario scope
 
 ---
 
@@ -775,7 +775,7 @@
 
     - Examples:
 
-              I store Cookie "CMSMSESSION" as "CMSMSESSION" in scenario scope
+              I store Cookie "CMSMSESSION" as "CMSMSESSION" in the scenario scope
 
 ---
 
@@ -785,9 +785,9 @@
 
     - Examples:
 
-               I store Response body node "method" as "method" in scenario scope
-               I store Response body node "Customers.get(1).SSN" as "SSN" in scenario scope
-               I store Response body node "Customers.get(firstName=Anna).SSN" as "SSN" in scenario scope
+               I store JSON Response body node "method" as "method" in the scenario scope
+               I store JSON Response body node "Customers.get(1).SSN" as "SSN" in the scenario scope
+               I store JSON Response body node "Customers.get(firstName=Anna).SSN" as "SSN" in the scenario scope
 ---
 
 - **I store XML Response body node "xpath" as "key" in the scenario scope**
@@ -796,12 +796,12 @@
 
     - Examples:
 
-              I store XML Response body node "//CustomerStatus/CustomerID" as "CustomerID" in scenario scope
-              I store XML Response body node "(//CustomerStatus/CustomerID/@Type)[1]" as "CustomerID_Type" in scenario scope
+              I store XML Response body node "//CustomerStatus/CustomerID" as "CustomerID" in the scenario scope
+              I store XML Response body node "(//CustomerStatus/CustomerID/@Type)[1]" as "CustomerID_Type" in the scenario scope
 ---
 
 
-- **And I establish connection to Data Base "DB""**
+- **I establish connection to Data Base "DB""**
     - Currently Watchmen supports Oracle DB and Aurora DB (aws) connection
     - Watchmen reads information about requested connection to DB during launch time from the config.properties (spring.profiles.active)
     - By default (if spring.profiles.active not specified) there are no connection to any DB
@@ -815,15 +815,15 @@
 
 ---
 
-- **I query for Integer "sql_query" and store result as "key" in scenario scope**
+- **I query for Integer "sql_query" and store result as "key" in the scenario scope**
     - Resolve placeholders for sql_query. If SQL provided as a file (*.sql)- locate file and read from file SQL query (one query per file).
       Execute SQL query. Cast result to Integer. Save result in Scenario Scope as a key.
 
 
    - Examples:
 
-                I query for Integer "SELECT Customerid FROM Customers WHERE CustomerName=Anna" and store result as "Customerid" in scenario scope
-                I query for Integer "data/{{env}}/query_Customerid.sql" and store result as "Customerid" in scenario scope
+                I query for Integer "SELECT Customerid FROM Customers WHERE CustomerName=Anna" and store result as "Customerid" in the scenario scope
+                I query for Integer "data/{{env}}/query_Customerid.sql" and store result as "Customerid" in the scenario scope
 
 
    "env" has to be provided on config.properties or as a runtime variable,
@@ -832,14 +832,14 @@
 
 ---
 
-- **I query for String "sql_query" and store result as "key" in scenario scope"**
+- **I query for String "sql_query" and store result as "key" in the scenario scope"**
     - Resolve placeholders for sql_query. If SQL provided as a file (*.sql) - locate file and read from file SQL query (one query per file).
       Execute SQL query. Cast result to String. Save result in Scenario Scope as a key.
 
    - Examples:
 
-             I query for String "SELECT CustomerName FROM Customers WHERE id=1234" and store result as "CustomerName" in scenario scope
-             I query for Integer "data/{{env}}/query_CustomerName.sql" and store result as "Customerid" in scenario scop
+             I query for String "SELECT CustomerName FROM Customers WHERE id=1234" and store result as "CustomerName" in the scenario scope
+             I query for Integer "data/{{env}}/query_CustomerName.sql" and store result as "Customerid" in the scenario scop
 
 
     "env" has to be provided on config.properties or as a runtime variable,
@@ -848,7 +848,7 @@
 
 ---
 
-- **I query for String "sql_query" with parameters as Data Table and store result as "key" in scenario scope:
+- **I query for String "sql_query" with parameters as Data Table and store result as "key" in the scenario scope:
         |param_name|value|**
     - Resolve placeholders for sql query. If SQL query provided as a file (*.sql) - locate file and read from file SQL query (one query per file).
       Resolve all placeholders for values from data table. Execute SQL query.
@@ -856,13 +856,13 @@
 
    - Examples:
 
-                I query for String "SELECT CustomerName FROM Customers WHERE CustomerId=:id" with parameters as Data Table and store result as "CustomerName" in scenario scope:
+                I query for String "SELECT CustomerName FROM Customers WHERE CustomerId=:id" with parameters as Data Table and store result as "CustomerName" in the scenario scope:
 
                 |id|1234|
 
 
 
-                I query for String "query_CustomerName_ById.sql" with parameters as Data Table and store result as "CustomerName" in scenario scope:
+                I query for String "query_CustomerName_ById.sql" with parameters as Data Table and store result as "CustomerName" in the scenario scope:
 
                 |id|1234|
 
@@ -873,7 +873,7 @@
 
 ---
 
-- **I query for Integer "sql_query" with parameters as Data Table and store result as "key" in scenario scope:
+- **I query for Integer "sql_query" with parameters as Data Table and store result as "key" in the scenario scope:
         |param_name|value|**
     - Resolve placeholders for sql query. If SQL query provided as a file (*.sql) - locate file and read from file SQL query (one query per file).
       Resolve all placeholders for values from data table. Execute SQL query.
@@ -881,13 +881,13 @@
 
     - Examples:
 
-               I query for Integer "SELECTCustomeridFROMCustomers WHERE CustomerName=:name" with parameters as Data Table and store result as "Customerid" in scenario scope:
+               I query for Integer "SELECTCustomeridFROMCustomers WHERE CustomerName=:name" with parameters as Data Table and store result as "Customerid" in the scenario scope:
 
                     |name|Anna|
 
 
 
-               I query for Integer "query_CustomerId_ByName.sql" with parameters as Data Table and store result as "Customerid" in scenario scope:
+               I query for Integer "query_CustomerId_ByName.sql" with parameters as Data Table and store result as "Customerid" in the scenario scope:
 
                     |name|Anna|
 
