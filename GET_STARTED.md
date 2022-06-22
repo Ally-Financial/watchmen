@@ -7,7 +7,8 @@
 
 ## Example Project 
 
- - Please clone example project where we show how fast and easy you can test CoinBase public APIs  
+ - Please clone example-project, where using CoinBase public APIs we show, how fast and easy you can test your API 
+ - In addition, example-project has many other demo scenarios, demonstrating how to use different Watchmen steps
 
 ------
 
@@ -76,7 +77,7 @@ Here’s the example of the feature file:
 
 ---
 
-## Steps Sefinition
+## Steps Definition
 
  - The glue between Gherkin and the system under test are implemented as regular Java methods and implemented in regular Java classes "CommonApiStepsDefinition.java" and "AwsStepsDefinition.java".
 

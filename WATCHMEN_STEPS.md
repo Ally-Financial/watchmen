@@ -218,15 +218,15 @@
        "env" has to be provided on config.properties or as a runtime variable,
 ---
 
-- **I provide my token "token" as a Bearer token on Authorization header**
+- **I provide token "token" as a Bearer token on Authorization header**
     - Resolve placeholdersBearer for token and add "Bearer" followed by a space and token as Authorization header
 
 
     - Examples:
 
-                I provide my token "1234567890" as a Bearer token on Authorization header
-                I provide my token "{{alerts_access_token}}" as a Bearer token on Authorization header
-                I provide my token "<access_token>" as a Bearer token on Authorization header
+                I provide token "1234567890" as a Bearer token on Authorization header
+                I provide token "{{alerts_access_token}}" as a Bearer token on Authorization header
+                I provide token "<access_token>" as a Bearer token on Authorization header
 
 
     "alerts_access_token" has to be provided on config.properties or as a runtime variable,
@@ -801,7 +801,7 @@
 ---
 
 
-- **I establish connection to Data Base "DB""**
+- **I establish connection with Database "DB""**
     - Currently Watchmen supports Oracle DB and Aurora DB (aws) connection
     - Watchmen reads information about requested connection to DB during launch time from the config.properties (spring.profiles.active)
     - By default (if spring.profiles.active not specified) there are no connection to any DB
@@ -810,8 +810,8 @@
 
     - Examples:
 
-              I establish connection to Data Base "Oracle"
-              I establish connection to Data Base "AuroraDB"
+              I establish connection with Database "Oracle"
+              I establish connection with Database "AuroraDB"
 
 ---
 
@@ -923,7 +923,7 @@
 
 ---
 
-- **Saved JSON "Json_name" node "Json_path" contains value "value"**
+- **I assert that saved JSON "Json_name" node "Json_path" contains value "value"**
     - Resolve all placeholders for value. Read Json "Json_name" from the Scenario Scope.
       Assert that json_path value contains expected value (ignoring case).
 
@@ -936,7 +936,7 @@
 
 ---
 
-- **Saved JSON "Json_name" node "Json_path" equals to value "value"**
+- **I assert that saved JSON "Json_name" node "Json_path" equals to value "value"**
     - Resolve all placeholders for value. Read Json "Json_name" from the Scenario Scope.
       Assert that json_path value equals to value (ignoring case).
 

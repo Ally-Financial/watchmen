@@ -7,5 +7,5 @@ Feature: Very first scenario
 
       |Content-Type|application/json; charset=utf-8|
 
-    And I send "GET" request
+    When I send "GET" request
     Then Response has Status code: "200"

@@ -29,7 +29,7 @@ Feature:How to connect to Oracle DB
     And   I store JSON Response body node "status" as "status_received" in the scenario scope
     And   I store Response header "CF-RAY" as "CorrelationId" in the scenario scope
 
-    And   I establish connection to Data Base "OracleDB"
+    And   I establish connection with Database "OracleDB"
     And   I query for String "SELECT STATUS_CD FROM ALERT_FILE WHERE FILE_UPLOAD_REQUEST_ID = 1234567 AND STATUS_CD = 2000" and store result as "result_1" in the scenario scope
     And   I query for Integer "data/sql/select_customer.sql" with parameters as Data Table and store result as "result_2" in the scenario scope:
       | corrId     | <CorrelationId>  |
