@@ -1,0 +1,73 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Header>
+        <wsse:Security soap:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/01.xsd">
+            <wsse:UsernameToken wsu:Id="UsernameToken-5" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/01.xsd">
+                <wsse:Username>AppUser</wsse:Username>
+                <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">123456789</wsse:Password>
+            </wsse:UsernameToken>
+        </wsse:Security>
+    </soap:Header>
+    <soap:Body>
+        <AddCustomersRequest xsi:schemaLocation="http://ally.com/schema/bdd/Customer/v1/ CustomerBDDs.xsd" xmlns="http://ally.com/schema/bdd/Customer/v1/" xmlns:cust="http://ally.com/schema/Customer/v1/" xmlns:fi="http://ally.com/schema/FI" xmlns:cmn="http://ally.com/schema/common/components/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <cmn:ApplicationArea xsi:type="cmn:RequestApplicationAreaType">
+                <cmn:Sender>
+                    <cmn:Name>DAO</cmn:Name>
+                    <cmn:ID>DAO</cmn:ID>
+                    <cmn:Properties Name="ClientAppName">BANKAPI</cmn:Properties>
+                    <cmn:Properties Name="ClientAppVersion">1.0</cmn:Properties>
+                </cmn:Sender>
+                <cmn:Reference>
+                    <cmn:ID>01_Customer_AddCustomers_DRE_e627b911-8bea-4953-a29c-2670b34b7a11</cmn:ID>
+                </cmn:Reference>
+            </cmn:ApplicationArea>
+            <DataArea>
+                <cust:CustomerInfo>
+                    <cmn:Party xsi:type="cmn:PersonType">
+                        <cmn:TaxIdentificationNumber Type="SSN">888-47-8720</cmn:TaxIdentificationNumber>
+                        <cmn:Contact Type="DayPhone">
+                            <cmn:Phone>
+                                <cmn:PhoneNumber>123226111</cmn:PhoneNumber>
+                            </cmn:Phone>
+                        </cmn:Contact>
+                        <cmn:Contact Type="Residence">
+                            <cmn:PostAddress>
+                                <cmn:AddressLine>abc</cmn:AddressLine>
+                                <cmn:AddressLine>efg</cmn:AddressLine>
+                                <cmn:City>pune</cmn:City>
+                                <cmn:State>AR</cmn:State>
+                                <cmn:Zipcode>72212</cmn:Zipcode>
+                                <cmn:Country>US</cmn:Country>
+                            </cmn:PostAddress>
+                        </cmn:Contact>
+                        <cmn:Contact Type="DayEmail">
+                            <cmn:EmailAddress>
+                                <cmn:EmailID>katy.keith@ally.com</cmn:EmailID>
+                            </cmn:EmailAddress>
+                        </cmn:Contact>
+                        <cmn:PersonName>
+                            <cmn:FirstName>Katy</cmn:FirstName>
+                            <cmn:LastName>Keith</cmn:LastName>
+                            <cmn:NameSuffix>Miss</cmn:NameSuffix>
+                        </cmn:PersonName>
+                        <cmn:BirthDate>1986-12-16</cmn:BirthDate>
+                        <cmn:MothersMaidenName>Katy</cmn:MothersMaidenName>
+                    </cmn:Party>
+                    <fi:FinancialInstitutionRef>
+                        <fi:FinancialInstitution>
+                            <cmn:ID>1234</cmn:ID>
+                            <fi:FinancialInsitutionInfo>
+                                <cmn:Party xsi:type="cmn:PersonType"/>
+                                <fi:BranchID>3</fi:BranchID>
+                                <fi:ReferenceInfo Name="Responsible"/>
+                            </fi:FinancialInsitutionInfo>
+                            <cmn:ObjectStatus>
+                                <cmn:Code>Valid</cmn:Code>
+                                <cmn:EffectiveDate>2011-02-08T00:00:00.000+05:00</cmn:EffectiveDate>
+                            </cmn:ObjectStatus>
+                        </fi:FinancialInstitution>
+                    </fi:FinancialInstitutionRef>
+                </cust:CustomerInfo>
+            </DataArea>
+        </AddCustomersRequest>
+    </soap:Body>
+</soap:Envelope>

@@ -61,6 +61,8 @@ With Watchmen framework we were able to overcome all these challenges and make t
       Then you can validate response and retrieve any data from it for the future use
 - **Allowing data driven approach**
     - You can define input data as Cucumber data tables, csv, Json, Xml, txt, yaml files
+    - You can provide template JSON payload and modify it on the runtime (change node value, add new node, remove node etc) to arrange different data driven scenarios
+    - You can provide template XML  payload and modify it on the runtime (change node value, add new node, remove node etc) to arrange different data driven scenarios
 - **Making API Authentication an Easy Process**
     - You can implement your own step to request access token and Watchmen will use token as a Bearer token for next requests
     - You can provide User name and Password and Watchmen will use them to generate Basic authorization token for the requests 
@@ -587,10 +589,15 @@ To generate library  run command 
 
                      Windows example: driver.path=/Users/szyf8j/work/git-ws/chromedriver.exe
 
+
+
 - **WThere are no fully implemented Gherkin Steps available, but Watchmen provides simple methods you can use to implement your steps for browser interaction.**
-     All methods are browser independent, so if you want to test on different browsers you don't need to change methods or steps definitions and only need to establish connection with the browser you need. 
+
+- Implement your own web steps using methods from SeleniumHelper class - please see watchmen/example-project for example selenium steps implementation 
+
+- All methods on the SeleniumHelper are browser independent, so if you want to test on different browsers you don't need to change methods or steps definitions and only need to establish connection with the browser you need. 
      
-     To implement your steps please explore SeleniumHelper java class.
+- Add your scenarios - please see watchmen/example-project for example scenario
 
 ---
 

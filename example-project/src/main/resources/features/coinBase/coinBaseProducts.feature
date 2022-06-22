@@ -1,4 +1,4 @@
-@CoinBase
+@coinBase
 Feature: CoinBase Products
 
   https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts
@@ -16,7 +16,7 @@ Feature: CoinBase Products
     |Connection             |
     |Transfer-Encoding      |
     And Response header "X-Frame-Options" has next value: "SAMEORIGIN"
-    And Response body JSON matches schema "data/response_schemas/getCoinBaseProducts_200.json"
+    And Response body JSON matches schema "data/response_schemas/coinBase/getCoinBaseProducts_200.json"
     And Response body JSON node equals to val:
     |get(id=AUCTION-EUR).quote_currency|EUR        |
     |get(id=AUCTION-EUR).base_currency |AUCTION    |
@@ -36,7 +36,7 @@ Feature: CoinBase Products
       |Connection             |
       |Transfer-Encoding      |
     And Response header "X-Frame-Options" has next value: "SAMEORIGIN"
-    And Response body JSON matches schema "data/response_schemas/getCoinBaseSingleProduct_200.json"
+    And Response body JSON matches schema "data/response_schemas/coinBase/getCoinBaseSingleProduct_200.json"
     And Response body JSON node equals to val:
       |quote_currency|<quote_currency> |
       |base_currency |<base_currency>  |
@@ -57,7 +57,7 @@ Feature: CoinBase Products
     And   I provide headers as csv file "data/headers/coinBase.csv"
     And   I send "GET" request
     Then  Response has Status code: "200"
-    And   Response body JSON matches schema "data/response_schemas/getCoinBaseProducts_200.json"
+    And   Response body JSON matches schema "data/response_schemas/coinBase/getCoinBaseProducts_200.json"
     And   I store JSON Response body node "get(id=<id>).quote_currency" as "stored-quote_currency" in the scenario scope
     And   I store JSON Response body node "get(id=<id>).base_currency" as "stored-base_currency" in the scenario scope
     And   I store JSON Response body node "get(id=<id>).display_name" as "stored-display_name" in the scenario scope
@@ -69,7 +69,7 @@ Feature: CoinBase Products
     And   I provide headers as csv file "data/headers/coinBase.csv"
     And   I send "GET" request
     Then  Response has Status code: "200"
-    And   Response body JSON matches schema "data/response_schemas/getCoinBaseSingleProduct_200.json"
+    And   Response body JSON matches schema "data/response_schemas/coinBase/getCoinBaseSingleProduct_200.json"
     And   Response body JSON node equals to val:
       |quote_currency|<stored-quote_currency> |
       |base_currency |<stored-base_currency>  |

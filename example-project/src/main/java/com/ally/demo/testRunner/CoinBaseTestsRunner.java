@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/main/resources/features",
         glue = {"com.ally.d3.watchmen.steps", "com/ally/demo/steps"},
-        tags ={"@CoinBase","not @skip"},
+        tags ={"@coinBase","not @skip"},
         plugin = {"pretty", "html:target/cucumber/bagbasics",
         "junit: target/cucumber/bagbasics/cucumber.xml", "json:target/cucumber-report/cucumber.json"}
         )
