@@ -61,15 +61,15 @@ With Watchmen framework we were able to overcome all these challenges and make t
       Then you can validate response and retrieve any data from it for the future use
 - **Allowing data driven approach**
     - You can define input data as Cucumber data tables, csv, Json, Xml, txt, yaml files
-    - You can provide template JSON payload and modify it on the runtime (change node value, add new node, remove node etc) to arrange different data driven scenarios
-    - You can provide template XML  payload and modify it on the runtime (change node value, add new node, remove node etc) to arrange different data driven scenarios
+    - You can provide template JSON payload and modify it on the runtime (change node value, add new node, remove node etc) to define different data driven scenarios
+    - You can provide template XML  payload and modify it on the runtime (change node or attribute values, add new node, remove node etc) to define different data driven scenarios
 - **Making API Authentication an Easy Process**
     - You can implement your own step to request access token and Watchmen will use token as a Bearer token for next requests
     - You can provide User name and Password and Watchmen will use them to generate Basic authorization token for the requests 
-- **Connection to DataBase**
+- **Connection with Database**
     - You can read test data directly from DB or perform E2E validation    
 - **Placeholders resolves**
-    - To modify any input data (including json, xml, csv) on runtime (SSN, email, date on any format, string, number, epoch time etc) you can use different type of placeholders
+    - To modify any input data (including json, xml, csv) on runtime (SSN, email, date on any format, string, number, epoch time etc) you can use different types of placeholders
 - **Chain few requests in one scenario**
     - You can chain as many API calls in one Scenario as you need and share data between them 
 - **Handling Asynchronous Wait**
@@ -144,8 +144,8 @@ Clone Watchmen example project
 5. [Watchmen Placeholders](#watchmen-placeholders)
 6. [Generation Data on Runtime](#generation-data-on-runtime)
 7. [Share State Between Steps](#watchmen-share-state-between-steps)
-8. [Relational Data Base Connection](#relational-Data-Base-connection)
-9. [Non Relational Data Base Connection](#non-Relational-Data-Base-connection)
+8. [Relational Database Connection](#relational-Database-connection)
+9. [Non Relational Database Connection](#non-Relational-Database-connection)
 10. [Integration with Swagger](#integration-with-swagger)
 11. [Integration with Selenium](#integration-with-selenium)
 12. [Integration with aws](#integration-with-aws)
@@ -493,9 +493,9 @@ Java object TestScope.java holding the state of scenario. This is a singleton
 ```
 ---
 
-## Relational Data Base connection
+## Relational Database connection
 
-- For today Watchmen has implemented connection with the next relational data Bases:
+- For today Watchmen has implemented connection with the next relational databases:
   
   **Oracle DB, AuroraDB (aws)**
   
@@ -532,9 +532,9 @@ Java object TestScope.java holding the state of scenario. This is a singleton
 
 ---
 
-## Non Relational Data Base connection
+## Non Relational Database connection
 
-- For today Watchmen has implemented connection with next NoSQL data Bases:
+- For today Watchmen has implemented connection with next NoSQL databases:
  
   **DynamoDB**
   

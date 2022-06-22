@@ -16,7 +16,7 @@ Feature: How to authenticate request
 
     Given I requested an access_token
     And   I want to call API Endpoint "{{demoURL}}"
-    And   I provide my token "<access_token>" as a Bearer token on Authorization header
+    And   I provide token "<access_token>" as a Bearer token on Authorization header
     And   I provide headers as data Table:
 
       |Content-Type|application/json; charset=utf-8|

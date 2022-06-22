@@ -159,10 +159,10 @@ public class CommonApiStepsDefinition {
     }
 
     //Header Authorization = Bearer followed by a space and token
-    @And("^I provide my token \"([^\"]*)\" as a Bearer token on Authorization header$")
+    @And("^I provide token \"([^\"]*)\" as a Bearer token on Authorization header$")
     public void provideAuthToken(String token) {
 
-        logger.info("Step: I provide my Access Token as Bearer token on Authorization header");
+        logger.info("Step: I provide token "+token+" as a Bearer token on Authorization header");
 
         String newToken = requestHelper.resolveAllPlaceholdersURL(token);
         authorizationHelper.setAuthorizationHeaderWithBearerToken(newToken);
@@ -171,7 +171,7 @@ public class CommonApiStepsDefinition {
     //Header Authorization = "Basic" followed by a space and a base64-encoded string user:password
     @And("^I provide user name \"([^\"]*)\" and password \"([^\"]*)\" as a Basic authentication on Authorization header$")
     public void provideBasicAuthenticationOnAuthorizationHeader(String user, String password) {
-        logger.info("Step: I provide Basic authentication on Authorization header");
+        logger.info("Step:I provide user name "+user+" and password "+password+"+ as a Basic authentication on Authorization header");
         String newUser = requestHelper.resolveAllPlaceholdersURL(user);
         String newPassword = requestHelper.resolveAllPlaceholdersURL(password);
 
@@ -261,10 +261,11 @@ public class CommonApiStepsDefinition {
 
     @And("^I provide body as file \"([^\"]*)\" converted to Byte Array$")
     public void provideBodyAsFileToByte(String file) {
-        logger.info("Step: I provide body as file converted to Byte array");
 
         //Check if there are placeholder {{ }} for property and replace it
         String newFile = requestHelper.resolveAllPlaceholdersURL(file);
+
+        logger.info("Step: I provide body as file "+newFile+" converted to Byte array");
 
         requestHelper.addBodyAsFileToByteArray(newFile);
     }
@@ -299,7 +300,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I set JSON body node to value:$")
     public void setJsonNodeToString(DataTable dataTable) {
-        logger.info("Step: I Set Json Node to value:");
+        logger.info("Step: I set JSON body node to value:");
 
         //Read Cucumber Data Table
         Map<String, String> nodes = dataTable.asMap(String.class, String.class);
@@ -319,7 +320,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I add JSON node \"([^\"]*)\" to Parent node \"([^\"]*)\" with value \"(.*)\"$")
     public void addNodeToJSONbody(String node, String parentPath, String value) {
-        logger.info("Step: I add JSON node " + node + " to Parent node " + parentPath + " as String " + value);
+        logger.info("Step: I add JSON node " + node + " to Parent node " + parentPath + " with value " + value);
 
         //Resolve placeholders
         String newValue = requestHelper.resolveAllPlaceholders(value);
@@ -328,7 +329,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I add JSON node \"([^\"]*)\" to Parent node \"([^\"]*)\" with value as raw JSON \"(.*)\"$")
     public void addNodeToJSONbodyFromJson(String node, String parentPath, String jsonFile) {
-        logger.info("Step: I add JSON node " + node + " to Parent node " + parentPath + " as raw Json " + jsonFile);
+        logger.info("Step: I add JSON node " + node + " to Parent node " + parentPath + " with value as raw JSON " + jsonFile);
 
         //Resolve placeholders
         String newJsonFile = requestHelper.resolveAllPlaceholdersURL(jsonFile);
@@ -338,7 +339,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I add new item to JSON Array node \"([^\"]*)\" with value as raw JSON \"(.*)\"$")
     public void addNodeToArrayJSONbodyFromJson(String parentPath, String jsonFile) {
-        logger.info("Step: I add new item to JSON Array node " + parentPath + " as raw Json " + jsonFile);
+        logger.info("Step: I add new item to JSON Array node " + parentPath + " with value as raw JSON " + jsonFile);
 
         //Resolve placeholders
         String newJsonFile = requestHelper.resolveAllPlaceholdersURL(jsonFile);
@@ -349,14 +350,14 @@ public class CommonApiStepsDefinition {
 
     @And("^I copy JSON tree from \"([^\"]*)\" and add it under Parent node \"([^\"]*)\" as new node \"([^\"]*)\"$")
     public void copyJSONNodeAddToParentNode(String parentNodePath, String newParentNodePath, String newNode)  {
-        logger.info("Step: I copy JSON node from " + parentNodePath + " and add it under Parent node " + newParentNodePath+" as new node: "+newNode);
+        logger.info("Step: I copy JSON tree from " + parentNodePath + " and add it under Parent node " + newParentNodePath+" as new node: "+newNode);
         requestHelper.copyNodeAddAsNewNode(parentNodePath,newParentNodePath,newNode);
     }
 
 
     @And("^I copy JSON tree from \"([^\"]*)\" and add it under Array node \"([^\"]*)\"$")
     public void copyJSONNodeAddToArray(String parentNodePath, String newParentNodePath)  {
-        logger.info("Step: I copy JSON node from " + parentNodePath + " and add it under Array node " + newParentNodePath);
+        logger.info("Step: I copy JSON tree from " + parentNodePath + " and add it under Array node " + newParentNodePath);
         requestHelper.copyNodeAddAsArray(parentNodePath,newParentNodePath);
     }
 
@@ -364,7 +365,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I remove JSON body node \"([^\"]*)\"$")
     public void removeNodeFromJSONBody(String path) {
-        logger.info("Step: I remove JSON node " + path);
+        logger.info("Step: I remove JSON body node " + path);
 
         requestHelper.removeNodeFromJSON(path);
     }
@@ -396,7 +397,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I set XML body node to value:$")
     public void setXmlNodeToString(DataTable dataTable) {
-        logger.info("Step: I Set XML body Node To value:");
+        logger.info("Step: I set XML body node to value:");
 
         //Read Cucumber Data Table
         Map<String, String> nodes = dataTable.asMap(String.class, String.class);
@@ -415,7 +416,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I add XML node \"([^\"]*)\" to Parent node \"([^\"]*)\" with value \"(.*)\"$")
     public void addNodeToXmlBody(String node, String parentPath, String value) {
-        logger.info("Step: I add Xml node " + node + " to Parent node " + parentPath + " as String " + value);
+        logger.info("Step: I add XML node " + node + " to Parent node " + parentPath + " with value " + value);
 
         //Resolve placeholders
         String newValue = requestHelper.resolveAllPlaceholders(value);
@@ -425,7 +426,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I add attribute \"([^\"]*)\" to XML node \"([^\"]*)\" with value \"(.*)\"$")
     public void addNodeAttrToXmlBody(String attr, String node, String value) {
-        logger.info("Step: I attribute " + attr + " to XML node " + node + " as String " + value);
+        logger.info("Step: I add attribute " + attr + " to XML node " + node + " with value " + value);
 
         //Resolve placeholders
         String newValue = requestHelper.resolveAllPlaceholders(value);
@@ -436,14 +437,14 @@ public class CommonApiStepsDefinition {
 
     @And("^I remove XML body node \"([^\"]*)\"$")
     public void removeNodeFromXmlBody(String path) {
-        logger.info("Step: I remove XML node " + path);
+        logger.info("Step: I remove XML body node " + path);
 
         requestHelper.removeNodeFromXML(path);
     }
 
     @And("^I remove attribute \"([^\"]*)\" from XML body node \"([^\"]*)\"$")
     public void removeNodeAttribureFromXmlBody(String attribute, String path) {
-        logger.info("Step: I remove attribute: " + attribute + "from XML node " + path);
+        logger.info("Step: I remove attribute: " + attribute + "from XML body node " + path);
 
         requestHelper.removeNodeAttrFromXML(path, attribute);
     }
@@ -682,7 +683,7 @@ public class CommonApiStepsDefinition {
 
     @And("^Response body XML node equals to val:$")
     public void responseBodyXMLNodeEqualToVal(DataTable fieldsTable) {
-        logger.info("Step: Response body XML node equal to val:");
+        logger.info("Step: Response body XML node equals to val:");
         Map<String, String> nodes = fieldsTable.asMap(String.class, String.class);
 
         //Resolve placeholders
@@ -714,7 +715,7 @@ public class CommonApiStepsDefinition {
 
     @And("^Response has response time < (\\d+) milliseconds$")
     public void responseHasResponseTime(long time) {
-        logger.info("Step: Response has response time < ");
+        logger.info("Step: Response has response time less than "+time+" milliseconds");
         responseHelper.validateResponseTime(time);
     }
 
@@ -767,7 +768,7 @@ public class CommonApiStepsDefinition {
 
         //Check if there are placeholder {{ }} for property and replace it
         String newFile = requestHelper.resolveAllPlaceholdersURL(file);
-        logger.info("Step: Response has ALL the headers from csv file " + newFile + " and ONLY that");
+        logger.info("Step: Response has ALL the headers from csv file " + newFile + " and ONLY those");
 
         //Get expected headers from csv file
         List<String> expectedHeadersList = readFile.readFirstColumnCSVtoList(newFile);
@@ -818,7 +819,7 @@ public class CommonApiStepsDefinition {
 
         //Resolve placeholders
         String newExpectedCookieValue = requestHelper.resolveAllPlaceholders(expectedCookieValue);
-        logger.info("Step: Response header " + cookieName + " has next value: " + newExpectedCookieValue);
+        logger.info("Step: Response cookie " + cookieName + " has next value: " + newExpectedCookieValue);
 
         responseHelper.validateResponseCookieHasNextStringValue(cookieName, newExpectedCookieValue);
     }
@@ -844,7 +845,7 @@ public class CommonApiStepsDefinition {
     @And("^I store JSON Response body node \"([^\"]*)\" as \"([^\"]*)\" in the scenario scope$")
     public void storeBodyNodeInScenarioScope(String node, String key) {
 
-        logger.info("Step: I store Response body node " + node + " as " + key + " in scenario scope");
+        logger.info("Step: I store Response body node " + node + " as " + key + " in the scenario scope");
         responseHelper.storeValueFromResponseBody(node, key);
     }
 
@@ -852,7 +853,7 @@ public class CommonApiStepsDefinition {
     @And("^I store XML Response body node \"([^\"]*)\" as \"([^\"]*)\" in the scenario scope$")
     public void storeXmlBodyNodeInScenarioScope(String node, String key) {
 
-        logger.info("Step: I store XML Response body node " + node + " as " + key + " in scenario scope");
+        logger.info("Step: I store XML Response body node " + node + " as " + key + " in the scenario scope");
         responseHelper.storeValueFromResponseXmlBody(node, key);
     }
 
@@ -860,7 +861,7 @@ public class CommonApiStepsDefinition {
     @And("^I store Response header \"([^\"]*)\" as \"([^\"]*)\" in the scenario scope$")
     public void storeHeaderInScenarioScope(String header, String key) {
 
-        logger.info("Step: I store Response header " + header + " as " + key + " in scenario scope");
+        logger.info("Step: I store Response header " + header + " as " + key + " in the scenario scope");
         responseHelper.storeValueFromResponseHeader(header, key);
     }
 
@@ -868,13 +869,13 @@ public class CommonApiStepsDefinition {
     @And("^I store Cookie \"([^\"]*)\" as \"([^\"]*)\" in the scenario scope$")
     public void storeCookieInScenarioScope(String cookie, String key) {
 
-        logger.info("Step: I store Response header " + cookie + " as " + key + " in scenario scope");
+        logger.info("Step: I store Cookie " + cookie + " as " + key + " in the scenario scope");
         responseHelper.storeValueFromResponseCookie(cookie, key);
     }
 
-    @And("^I establish connection to Data Base \"([^\"]*)\"$")
+    @And("^I establish connection with Database \"([^\"]*)\"$")
     public void iEstablishConnectionToDataBase(String db) {
-        logger.info("Step: I establish connection to Data Base " + db);
+        logger.info("Step: I establish connection with Database " + db);
         if (db.toLowerCase().contains("oracle") || db.toLowerCase().contains("aurora"))
             dataBaseHelper.establishConnection();
         else {
@@ -981,21 +982,6 @@ public class CommonApiStepsDefinition {
 
     }
 
-    @And("^Saved JSON \"(.*)\" node \"(.*)\" equals to value \"(.*)\"$")
-    public void jsonNodeEqualsToVal(String jsonName, String node, String val) {
-
-        //Resolve placeholders
-        String newVal = requestHelper.resolveAllPlaceholders(val);
-        logger.info("Step: Saved JSON node equals to value "+newVal);
-        logger.debug("Assert JSON Node: " + node + " Equals to String: " + newVal);
-
-        JsonNode json = testScope.getFromJsonContainer(jsonName);
-
-        String actualNodeValue = jsonHelper.getJSONnodeValue(json, node);
-        Assert.assertTrue("JSON Node: " + node + " does not match expected value. Expected value is: " + newVal + "; Actual value is: " + actualNodeValue, actualNodeValue.equalsIgnoreCase(newVal));
-
-    }
-
 
     @And("^I wait for (\\d+) seconds$")
     public void waitForSeconds(int sec) {
@@ -1040,7 +1026,7 @@ public class CommonApiStepsDefinition {
         //Resolve placeholders
         String newValue1 = requestHelper.resolveAllPlaceholders(value1);
         String newValue2 = requestHelper.resolveAllPlaceholders(value2);
-        logger.info("Step: I assert that numeric value1 "+newValue1+" is bigger than to value2 "+newValue2);
+        logger.info("Step: I assert that numeric value1 "+newValue1+" is bigger than value2 "+newValue2);
 
         Assert.assertTrue(newValue1 + " is NOT bigger then " + newValue2, NumberUtils.parseNumber(newValue1, BigDecimal.class).compareTo(NumberUtils.parseNumber(newValue2, BigDecimal.class))==1);
 
@@ -1064,7 +1050,7 @@ public class CommonApiStepsDefinition {
         //Resolve placeholders
         String newValue1 = requestHelper.resolveAllPlaceholders(value1);
         String newValue2 = requestHelper.resolveAllPlaceholders(value2);
-        logger.info("Step: I assert that string1 "+newValue1+" does not equal to string2 "+newValue1);
+        logger.info("Step: I assert that string1 "+newValue1+" is not equal to string2 "+newValue1);
 
         Assert.assertTrue(newValue1 + " equals to " + newValue2, !newValue1.equalsIgnoreCase((newValue2)));
 

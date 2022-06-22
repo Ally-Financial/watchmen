@@ -77,7 +77,7 @@ public class AwsStepsDefinition {
         //Resolve placeholders
         String newHashVal = requestHelper.resolveAllPlaceholders(hashVal);
         String newRangeVal = requestHelper.resolveAllPlaceholders(rangeVal);
-        logger.info("Step: I request DynamoDB table " + tableName + " with PrimaryKey= " + newHashVal + " and SecondaryKey= " + newRangeVal + " and save result as: " + name);
+        logger.info("Step: I query DynamoDB table " + tableName + " with PrimaryKey= " + newHashVal + " and SecondaryKey= " + newRangeVal + " and save result as JSON " + name);
 
         //Request DB and save result
         try {
@@ -94,7 +94,7 @@ public class AwsStepsDefinition {
 
         //Resolve placeholders
         String newHashVal = requestHelper.resolveAllPlaceholders(hashVal);
-        logger.info("Step: I request DynamoDB table " + tableName + " with PrimaryKey= " + newHashVal + "  and save result as: " + name);
+        logger.info("Step: I query DynamoDB table " + tableName + " with PrimaryKey= " + newHashVal + "  and save result as JSON: " + name);
 
         //Request DB and save result
         try {
@@ -146,6 +146,8 @@ public class AwsStepsDefinition {
     @And("^I read publicKey from Url \"([^\"]*)\" and save as a file \"([^\"]*)\"$")
     public void readPublicKeyAsFileFromUrl(String url, String fileName) {
 
+        logger.info("Step: I read publicKey from Url "+ url+ " and save as a file "+fileName);
+
         logger.debug("Read publicKey from Url and save as a file " + fileName);
         //consumer_key and consumer_secret comes from Env
 
@@ -159,7 +161,7 @@ public class AwsStepsDefinition {
 
     @And("^I encrypt file \"([^\"]*)\" with publicKey \"([^\"]*)\" and send PUT request to the S3 pre-signed URL \"([^\"]*)\" with the headers:$")
     public void encryptFile(String inputFilename, String filePublicKey, String preSignedURL, DataTable headersTable) {
-        logger.info("Step: Encrypt file with publicKey and PUT it to the S3 pre-signed URL");
+        logger.info("Step:I encrypt file "+ inputFilename+ "with publicKey and send PUT request to the S3 pre-signed URL with the headers");
 
         //resolve placeholders
         String newInputFilename = placeholderResolve.replacePlaceholdersURL(inputFilename);
@@ -195,7 +197,8 @@ public class AwsStepsDefinition {
 
     @And("^I encrypt file \"([^\"]*)\" with publicKey \"([^\"]*)\" using armored format and send PUT request to the S3 pre-signed URL \"([^\"]*)\" with the headers:$")
     public void encryptFileArmoring(String inputFilename, String filePublicKey, String preSignedURL, DataTable headersTable) {
-        logger.info("Step: Encrypt file with publicKey using armored format and PUT it to the S3 pre-signed URL");
+
+        logger.info("Step:I encrypt file "+ inputFilename+ "using armored format with publicKey and send PUT request to the S3 pre-signed URL with the headers");
 
         //get headers:
         Map<String, String> headers = headersTable.asMap(String.class, String.class);
