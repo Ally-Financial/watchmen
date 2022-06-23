@@ -6,7 +6,7 @@
 ------
 
 Watchmen is an API test automation framework. It provides reusable set of Gherkin steps to express requests, test data mining, assert responses,
-connect to data bases, and more giving you the ability to define test scenarios you want to execute.
+connect to databases, and more giving you the ability to define test scenarios you want to execute.
 During runtime, Watchmen transforms Gherkin steps into Java code, enabling you to test your API
 
 ---
@@ -88,7 +88,7 @@ With Watchmen framework we were able to overcome all these challenges and make t
 - **Easy Setup**
     - All you need is Java 8, Maven or Grade and SDK
 - **Fast & Portable**
-    - You can wrap Watchmen as a jar file and use Watchmen steps and Watchmen helper methods at any test project you are working on.  
+    - Watchmen packaged as a JAR file and stored in Maven Central Repository. Any java development project can use it as a test resource and onboard in just a few days.  
 
 ---
 ## Main Ingredients
