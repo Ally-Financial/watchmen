@@ -171,7 +171,7 @@ public class CommonApiStepsDefinition {
     //Header Authorization = "Basic" followed by a space and a base64-encoded string user:password
     @And("^I provide user name \"([^\"]*)\" and password \"([^\"]*)\" as a Basic authentication on Authorization header$")
     public void provideBasicAuthenticationOnAuthorizationHeader(String user, String password) {
-        logger.info("Step:I provide user name "+user+" and password "+password+"+ as a Basic authentication on Authorization header");
+        logger.info("Step: I provide user name "+user+" and password "+password+"+ as a Basic authentication on Authorization header");
         String newUser = requestHelper.resolveAllPlaceholdersURL(user);
         String newPassword = requestHelper.resolveAllPlaceholdersURL(password);
 
@@ -290,7 +290,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I set JSON body node \"([^\"]*)\" to \"(.*)\"$")
     public void setJsonNodeToString(String path, String value) {
-        logger.info("I set JSON body node " + path + " to " + value);
+        logger.info("Step: I set JSON body node " + path + " to " + value);
 
         //Resolve placeholders
         String newValue = requestHelper.resolveAllPlaceholders(value);
@@ -388,7 +388,7 @@ public class CommonApiStepsDefinition {
 
     @And("^I set XML body node \"([^\"]*)\" to \"(.*)\"$")
     public void setXmlNodeToString(String path, String value) {
-        logger.info("I set XML body node: " + path + " to " + value);
+        logger.info("Step: I set XML body node: " + path + " to " + value);
 
         //Resolve placeholders
         String newValue = requestHelper.resolveAllPlaceholders(value);
