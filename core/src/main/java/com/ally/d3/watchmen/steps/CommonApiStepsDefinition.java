@@ -16,8 +16,6 @@ package com.ally.d3.watchmen.steps;
 import com.ally.d3.watchmen.utilities.*;
 import com.ally.d3.watchmen.utilities.dataDriven.*;
 import com.ally.d3.watchmen.utilities.DataBaseHelper;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.jayway.awaitility.Duration;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import cucumber.api.Scenario;
@@ -29,15 +27,10 @@ import io.cucumber.datatable.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.RestAssured;
-import io.restassured.config.LogConfig;
-import io.restassured.response.Response;
-import io.restassured.response.ResponseOptions;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.URISyntaxException;
 import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -447,6 +440,81 @@ public class CommonApiStepsDefinition {
         logger.info("Step: I remove attribute: " + attribute + "from XML body node " + path);
 
         requestHelper.removeNodeAttrFromXML(path, attribute);
+    }
+
+    @And("^I provide body as GraphQL query \"(.*)\" with parameters as Data Table:$")
+    public void provideBodyAsGraphQLQueryWithParams(String query, DataTable paramTable) {
+
+
+        logger.info("Step: I provide body as GraphQL query with parameters as Data Table");
+
+
+        Map<String, String> queryParams = paramTable.asMap(String.class, String.class);
+
+        //Resolve placeholders
+        Map<String, String> newQueryParams = requestHelper.resolveAllPlaceholders(queryParams);
+
+        //Implement Parsing query and replacing dynamic parameters +param+
+
+        String newQuery = requestHelper.resolveNamedPlaceholders(query, newQueryParams);
+
+        Map<String, String> payload = new HashMap<String, String>();
+        payload.put("query", newQuery);
+
+        String jsonPayload = jsonHelper.createJSONPayloadFromMap(payload);
+        requestHelper.addJSONBodyAsStringToRequest(jsonPayload);
+
+    }
+
+    @And("^I provide body as GraphQL mutation \"(.*)\" with parameters as Data Table:$")
+    public void provideBodyAsGraphQLMutationWithParams(String mutation, DataTable paramTable) {
+
+
+        logger.info("Step: I provide body as GraphQL mutation with parameters as Data Table");
+
+        Map<String, String> queryParams = paramTable.asMap(String.class, String.class);
+
+        //Resolve placeholders
+        Map<String, String> newQueryParams = requestHelper.resolveAllPlaceholders(queryParams);
+
+        //Implement Parsing query and replacing dynamic parameters +param+
+
+        String newMutation = requestHelper.resolveNamedPlaceholders(mutation, newQueryParams);
+
+        Map<String, String> payload = new HashMap<String, String>();
+        payload.put("mutation", newMutation);
+
+        String jsonPayload = jsonHelper.createJSONPayloadFromMap(payload);
+        requestHelper.addJSONBodyAsStringToRequest(jsonPayload);
+
+    }
+
+    @And("^I provide body as GraphQL mutation \"(.*)\"$")
+    public void provideBodyAsGraphQLMutation(String mutation) {
+
+
+        logger.info("Step: I provide body as GraphQL mutation");
+
+        Map<String, String> payload = new HashMap<String, String>();
+        payload.put("mutation", mutation);
+
+        String jsonPayload = jsonHelper.createJSONPayloadFromMap(payload);
+        requestHelper.addJSONBodyAsStringToRequest(jsonPayload);
+
+    }
+
+    @And("^I provide body as GraphQL query \"(.*)\"$")
+    public void provideBodyAsGraphQLQuery(String query) {
+
+
+        logger.info("Step: I provide body as GraphQL query");
+
+        Map<String, String> payload = new HashMap<String, String>();
+        payload.put("query", query);
+
+        String jsonPayload = jsonHelper.createJSONPayloadFromMap(payload);
+        requestHelper.addJSONBodyAsStringToRequest(jsonPayload);
+
     }
 
 
