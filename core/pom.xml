@@ -502,7 +502,12 @@
             <version>4.0.0-beta-1</version>
         </dependency>
 
-
+        <!-- Apache Text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.9</version>
+        </dependency>
 
     </dependencies>
 
