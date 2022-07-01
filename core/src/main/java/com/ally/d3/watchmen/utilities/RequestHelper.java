@@ -26,6 +26,7 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.QueryableRequestSpecification;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.SpecificationQuerier;
+import org.apache.commons.text.StringSubstitutor;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,7 +34,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -565,6 +565,14 @@ public class RequestHelper {
     public String resolveAllPlaceholdersURL (String url ) {
 
         return placeholderResolve.replacePlaceholdersURL(url);
+    }
+
+    public String resolveNamedPlaceholders(String initialString, Map<String, String> namedPlaceholders) {
+
+        StringSubstitutor strSub = new StringSubstitutor(namedPlaceholders);
+        strSub.setEnableUndefinedVariableException(true);
+        return strSub.replace(initialString);
+
     }
 
     public void storeInScenarioScopeMyVal (String key, String val) {
