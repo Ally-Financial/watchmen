@@ -6,10 +6,11 @@
 
     <groupId>io.github.ally-financial</groupId>
     <artifactId>watchmen</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <packaging>jar</packaging>
     <name>watchmen</name>
     <description>BDD framework for API testing</description>
+    <url>https://github.com/Ally-Financial/watchmen</url>
 
 
     <licenses>
@@ -130,13 +131,25 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <version>1.6.8</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
+                <dependencies>
+                    <!--
+                      TODO:
+                        Remove after OSSRH-66257, NEXUS-26993 are fixed,
+                        possibly via https://github.com/sonatype/nexus-maven-plugins/pull/91
+                    -->
+                    <dependency>
+                        <groupId>com.thoughtworks.xstream</groupId>
+                        <artifactId>xstream</artifactId>
+                        <version>1.4.15</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
 
@@ -256,12 +269,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
         </dependency>
 
         <dependency>
