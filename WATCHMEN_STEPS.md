@@ -187,6 +187,45 @@
     "env" has to be provided on config.properties or as a runtime variable,
 ---
 
+- **I provide body as GraphQL query "query"**
+    - Read query and build JSON as {"query":"query"} and add to the request specification body as a String
+
+    - Examples:
+
+                I provide body as GraphQL query "query ExampleQuery {continents {code} countries {code} languages {code}}"
+
+---
+
+- **I provide body as GraphQL query "query" with parameters as Data Table:**
+    - Read query and resolve all ${parameters} using Data table. Data table can contain any Watchmen placeholder. Build JSON as {"query":"query"} and add to the request specification body as a String
+
+    - Examples:
+
+                And   I provide body as GraphQL query "query Query {country(code:"${code}"){name native capital emoji currency languages {code name}}}" with parameters as Data Table:
+                      |code|%randomAlpha(3)%|
+
+---
+
+- **I provide body as GraphQL mutation "mutation"**
+    - Read mutation and build JSON as {"mutation":"mutation"} and add to the request specification body as a String
+
+    - Examples:
+
+                I provide body as GraphQL mutation "mutation {addComment(comment: {comment: "Cool", author: "Me", talkId: 12}) {createdOn id}}"
+
+---
+
+- **I provide body as GraphQL mutation "mutation" with parameters as Data Table:**
+    - Read mutation and resolve all ${parameters} using Data table. Data table can contain any Watchmen placeholder. Build JSON as {"query":"query"} and add to the request specification body as a String
+
+    - Examples:
+
+                And   I provide body as GraphQL mutation "mutation {addComment(comment: {comment: "${comment}", author: "Me", talkId: ${id}) {createdOn id}}" with parameters as Data Table:
+                      |comment|%randomAlpha(25)%|
+                      |id     |%getTimeMs%      |
+---
+
+
 - **I provide form data as data Table:
     |data|value |**
     - Read Data table and resolve all placeholders and add to the request specification: FormParams

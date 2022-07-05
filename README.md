@@ -140,21 +140,22 @@ Clone Watchmen example project
 1. [Watchmen Steps](#watchmen-steps)
 2. [Watchmen Data Management](#watchmen-data-management)
 3. [Watchmen & JSON](#watchmen-and-JSON)
-4. [Watchmen & XML](#watchmen-and-XML)
-5. [Watchmen Placeholders](#watchmen-placeholders)
-6. [Generation Data on Runtime](#generation-data-on-runtime)
-7. [Share State Between Steps](#watchmen-share-state-between-steps)
-8. [Relational Database Connection](#relational-Database-connection)
-9. [Non Relational Database Connection](#non-Relational-Database-connection)
-10. [Integration with Swagger](#integration-with-swagger)
-11. [Integration with Selenium](#integration-with-selenium)
-12. [Integration with aws](#integration-with-aws)
-13. [Watchmen Proxy](#watchmen-proxy)
-14. [Watchmen Logs](#watchmen-logs)
-15. [Watchmen Reports](#watchmen-reports)
-16. [Watchmen Security](#watchmen-security)
-17. [People](#people)
-18. [License](#License)
+4. [Watchmen & XML](#watchmen-and-GraphQL)
+5. [Watchmen & GraphQL](#watchmen-and-XML)
+6. [Watchmen Placeholders](#watchmen-placeholders)
+7. [Generation Data on Runtime](#generation-data-on-runtime)
+8. [Share State Between Steps](#watchmen-share-state-between-steps)
+9. [Relational Database Connection](#relational-Database-connection)
+10. [Non Relational Database Connection](#non-Relational-Database-connection)
+11. [Integration with Swagger](#integration-with-swagger)
+12. [Integration with Selenium](#integration-with-selenium)
+13. [Integration with aws](#integration-with-aws)
+14. [Watchmen Proxy](#watchmen-proxy)
+15. [Watchmen Logs](#watchmen-logs)
+16. [Watchmen Reports](#watchmen-reports)
+17. [Watchmen Security](#watchmen-security)
+18. [People](#people)
+19. [License](#License)
 
 
 
@@ -291,7 +292,28 @@ For more information please see - https://librarycarpentry.org/lc-webscraping/02
 
  
 ```
+---
 
+## Watchmen and GraphQL 
+
+- With Watchmen you can send query and mutation operations to graph APIs.
+- To make scenarios data driven, Watchmen supports placeholders to pass arguments inside of query and mutation.
+
+*Example Scenario:*
+```
+      Scenario: Request country information for non existing country
+         Given I want to call API Endpoint "{{countriesGraphQL}}"
+         And   I provide headers as data Table:
+           |content-type|application/json|
+         And   I provide body as GraphQL query "query Query {country(code:"${code}"){name native capital emoji currency languages {code name}}}" with parameters as Data Table:
+           |code|%randomAlpha(3)%|
+         When  I send "POST" request
+         Then  Response has Status code: "200"
+         And   Response body JSON node equals to val:
+           |data.country|null|
+
+ 
+```
 ---
 
 ## Watchmen Placeholders

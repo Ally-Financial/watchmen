@@ -21,10 +21,9 @@
          <dependency>
              <groupId>io.github.ally-financial</groupId>
              <artifactId>watchmen</artifactId>
-             <version>1.0.0-SNAPSHOT</version>
+             <version>1.0.0-RELEASE</version>
          </dependency>
         
-        Note:  1.0.0-RELEASE coming soon 
         
  - To register and inject project's properties Watchmen uses Spring framework, check SpringConfig.java
  - To configure Spring to use property file you need to update class SpringConfig.java:
